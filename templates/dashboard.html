@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Todo list
+{% endblock %}
+
+{% block scripts %}
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="/static/js/csrf_script.js"></script>
+    <script type="text/javascript" src="/static/js/todo.js"></script>
+{% endblock %}
+
+
+{% block content %}
+		
+    <form method="post" action="{% url 'django.contrib.auth.views.logout' %}">
+        {% csrf_token %}
+        <button class="logout" type="submit">Logout</button>
+    </form>
+    <br>
+	<h2>Add new todo</h2>
+	<form name="checkListForm">
+	    Text: <input type="text" name="addText"/>
+	    Due date: <input type="text" name="addDueDate"/>
+		<select name="addPriority">
+	        <option value="1">High</option>
+	        <option value="2" selected="true">Normal</option>
+	        <option value="3">Low</option>
+	    </select>
+	</form>
+	<div id="add">Add</div>
+	<div id="refresh">Refresh</div>
+
+	<h2>Todo list</h2>
+
+    <form name="sortForm">
+        Sort by:<br/>
+	    <input type="radio" name="sort" value="priority">priority
+	    <input type="checkbox" name="showCompleted" checked>Show completed<br>
+		<input type="radio" name="sort" value="due_date" checked>due date
+	    
+    </form>
+    
+    <hr>
+    
+	<table class="list" id="list">
+	<tr>
+	   <th>Done</th>
+	   <th>Text</th>
+	   <th>Due date</th>
+	   <th>Priority</th>
+	   <th>Delete</th>
+	</tr>
+	</table>
+	
+	<br/>
+	<i>Note: double click on Todo's text to edit</i>
+
+{% endblock %}

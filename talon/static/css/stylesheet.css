@@ -1,0 +1,49 @@
+h2 {
+    font-family:arial;
+}
+
+form {
+    display: inline-block;
+}
+
+#refresh, #add, option, select {
+    display: inline-block;
+    height:20px;
+	width:70px;
+	background-color:#cc0000;
+	font-family:arial;
+	font-weight:bold;
+	color:#ffffff;
+	border-radius: 5px;
+	text-align:center;
+	margin-top:2px;
+	cursor: pointer;
+}
+
+.delete {
+    width:20px;
+    display: inline-block;
+    background-color:#cc0000;
+    font-family:arial;
+    font-weight:bold;
+    color:#ffffff;
+    border-radius: 5px;
+    text-align:center;
+    margin-top:2px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.list {
+	font-family:garamond;
+	color:#000000;
+}
+
+button.logout {
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: blue;
+  background-color: transparent;
+  text-decoration: underline;
+}

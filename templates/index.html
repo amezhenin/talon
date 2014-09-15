@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Welcome to Talon
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'registration_register' %}">Register</a> 
+<br>
+<a href="{% url 'django.contrib.auth.views.login' %}">Log in</a> 
+
+{% endblock %}
