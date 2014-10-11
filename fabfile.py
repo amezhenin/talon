@@ -61,4 +61,4 @@ def setup_local_env():
         local("touch settings_local.py")
         local(env.PYTHON + " manage.py syncdb")
         local(env.PYTHON + " manage.py migrate")
-    
+
