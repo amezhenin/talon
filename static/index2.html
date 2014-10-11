@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css"/>
+
+    <script src="/static/bower_components/angular/angular.min.js"></script>
+    <script src="/static/js/angular_todo.js"></script>
+</head>
+
+<body>
+
+
+<div ng-app="talonApp" ng-controller="todoController">
+
+    <table>
+        <tr>
+           <th>Done</th>
+           <th>Text</th>
+           <th>Due date</th>
+           <th>Priority</th>
+           <th>Delete</th>
+        </tr>
+        <tr ng-repeat="x in todos" ng-class="rowClass(person)">
+            <td><input type="checkbox" ng-checked="x.completed" ng-click="complete_click(x)"></td>
+            <td ng-class="{done: x.completed}">{{ x.text }}</td>
+            <td> {{ x.due_date }} </td>
+            <td> {{ x.priority }} </td>
+            <td class="delete" ng-click="delete_click(x)"> x </td>
+        </tr>
+    </table>
+
+
+</div>
+
+</body>
+</html>

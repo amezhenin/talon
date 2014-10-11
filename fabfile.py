@@ -48,6 +48,7 @@ def log():
 def setup_local_env():
     """
     Setup virtual environment for developers
+    FIXME: pipeline is correct, but directories are wrong
     """
     local("mkdir  ~/venv")
     with cd("~/venv"):
@@ -61,4 +62,7 @@ def setup_local_env():
         local("touch settings_local.py")
         local(env.PYTHON + " manage.py syncdb")
         local(env.PYTHON + " manage.py migrate")
+
+    with cd("~/workspace/project-artem-mezhenin/static"):
+        local("bower install")
 
