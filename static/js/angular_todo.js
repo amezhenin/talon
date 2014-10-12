@@ -17,8 +17,8 @@ app.controller("todoController", function ($scope, $http) {
     };
 
     $scope.init_form = function() {
-        $scope.checkListForm.addText = "trololo";
         $scope.addText = "trololo";
+        $scope.addPriority = 2;
     };
 
 
@@ -37,8 +37,15 @@ app.controller("todoController", function ($scope, $http) {
     };
 
     $scope.submit_click = function(todo) {
-        alert("asdf");
+        var data = {
+            text: $scope.addText,
+            priority: $scope.addPriority,
+            due_date: $scope.addDueDate
+        }
+        $http.post("/api/todo/", data).success($scope.init_table());
     };
 
     $scope.init_table();
+    $scope.init_form();
+    $scope.userType = 'guest';
 });
