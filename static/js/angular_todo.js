@@ -10,7 +10,7 @@ app.config(['$httpProvider', function($httpProvider) {
 app.controller("todoController", function ($scope, $http) {
 
     $scope.init_table = function() {
-        $http.get("/api/todo")
+        $http.get("/api/todo/")
             .success(function(response) {
                 $scope.todos = response;
             });
@@ -23,7 +23,7 @@ app.controller("todoController", function ($scope, $http) {
 
 
     $scope.delete_click = function(todo) {
-        $http.delete("/api/todo/" + todo.id)
+        $http.delete("/api/todo/" + todo.id + "/")
             .success(function(response) {
                 $scope.init_table(); // TODO do something else
             });
@@ -34,7 +34,7 @@ app.controller("todoController", function ($scope, $http) {
         // invert completed flag
         todo.completed = !todo.completed;
         // update selected item
-        $http.put("/api/todo/" + todo.id, todo)
+        $http.put("/api/todo/" + todo.id + "/", todo)
             .success(function(response) {
                 $scope.init_table(); // TODO do something else
             });
@@ -52,7 +52,15 @@ app.controller("todoController", function ($scope, $http) {
             });
     };
 
+    $scope.filter_todos = function(todo) {
+        if (!$scope.showCompleted) {
+            return !todo.completed;
+        }
+        return true;
+    };
+
     $scope.init_table();
     $scope.init_form();
-    $scope.userType = 'guest';
+    $scope.reverse_sort = false;
+    $scope.showCompleted = true;
 });

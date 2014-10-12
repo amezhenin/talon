@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css"/>
+    <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
     <script src="/static/bower_components/angular/angular.min.js"></script>
     <script src="/static/js/angular_todo.js"></script>
@@ -13,6 +14,7 @@
 
 <div ng-app="talonApp" ng-controller="todoController">
 
+    <h2>Add new todo</h2>
     <form name="checkListForm" ng-submit="submit_click(x)" novalidate>
         Text: <input type="text" ng-model="addText" required/><br/>
 
@@ -25,20 +27,22 @@
         <input type="submit" id="submit" value="Submit" />
     </form>
 
-    <br/><br/><br/>
 
+    <br/><br/><br/>
+    <h2>Todo list</h2>
+    <input type="checkbox" ng-model="showCompleted" checked>Show completed<br>
     <table>
         <tr>
-           <th>Done</th>
-           <th>Text</th>
-           <th>Due date</th>
-           <th>Priority</th>
+            <th>Done</th>
+            <th>Text</th>
+            <th><a href="" ng-click="predicate='due_date'; reverse_sort=!reverse_sort">Due date</a></th>
+            <th><a href="" ng-click="predicate='priority'; reverse_sort=!reverse_sort">Priority</a></th>
            <th>Delete</th>
         </tr>
-        <tr ng-repeat="x in todos" ng-class="rowClass(person)">
+        <tr ng-repeat="x in todos | filter:filter_todos | orderBy:predicate:reverse_sort" ng-class="rowClass(person)">
             <td><input type="checkbox" ng-checked="x.completed" ng-click="complete_click(x)"></td>
             <td ng-class="{done: x.completed}">{{ x.text }}</td>
-            <td> {{ x.due_date }} </td>
+            <td> {{ x.due_date |  date: 'dd-MM-yyyy'}} </td>
             <td> {{ x.priority }} </td>
             <td class="delete" ng-click="delete_click(x)"> x </td>
         </tr>
