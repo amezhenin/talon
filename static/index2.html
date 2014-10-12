@@ -13,6 +13,23 @@
 
 <div ng-app="talonApp" ng-controller="todoController">
 
+    <form name="checkListForm" ng-controller="todoController">
+        Text: <input type="text" ng-model="addText" required/>
+
+        <span class="error" ng-show="myForm.input.$error.required">Required!</span><br>
+
+
+        <p>Due date: <input type="text" ng-model="addDueDate"/></p>
+        <p><select ng-model="addPriority">
+            <option value="1">High</option>
+            <option value="2" selected="true">Normal</option>
+            <option value="3">Low</option>
+        </select></p>
+        <input type="submit"  ng-click="submit_click(x)">
+    </form>
+
+
+
     <table>
         <tr>
            <th>Done</th>
