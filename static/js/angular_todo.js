@@ -24,7 +24,9 @@ app.controller("todoController", function ($scope, $http) {
 
     $scope.delete_click = function(todo) {
         $http.delete("/api/todo/" + todo.id)
-            .success($scope.init_table());  // TODO do something else
+            .success(function(response) {
+                $scope.init_table(); // TODO do something else
+            });
     };
 
 
@@ -33,7 +35,9 @@ app.controller("todoController", function ($scope, $http) {
         todo.completed = !todo.completed;
         // update selected item
         $http.put("/api/todo/" + todo.id, todo)
-            .success($scope.init_table());  // TODO do something else
+            .success(function(response) {
+                $scope.init_table(); // TODO do something else
+            });
     };
 
     $scope.submit_click = function(todo) {
@@ -42,7 +46,10 @@ app.controller("todoController", function ($scope, $http) {
             priority: $scope.addPriority,
             due_date: $scope.addDueDate
         }
-        $http.post("/api/todo/", data).success($scope.init_table());
+        $http.post("/api/todo/", data)
+            .success(function(response) {
+                $scope.init_table(); // TODO do something else
+            });
     };
 
     $scope.init_table();
