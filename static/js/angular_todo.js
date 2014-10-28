@@ -1,4 +1,4 @@
-var app = angular.module("talonApp", []);
+var app = angular.module("talonApp", ['ui.bootstrap']);
 
 
 app.config(['$httpProvider', function($httpProvider) {
@@ -64,3 +64,5 @@ app.controller("todoController", function ($scope, $http) {
     $scope.reverse_sort = false;
     $scope.showCompleted = true;
 });
+
+

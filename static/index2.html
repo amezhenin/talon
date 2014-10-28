@@ -3,10 +3,12 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css"/>
-    <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
     <script src="/static/bower_components/angular/angular.min.js"></script>
     <script src="/static/js/angular_todo.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
+
 </head>
 
 <body>
@@ -18,8 +20,13 @@
     <form name="checkListForm" ng-submit="submit_click(x)" novalidate>
         Text: <input type="text" ng-model="addText" required/><br/>
 
-        Due date: <input type="text" ng-model="addDueDate"/><br/>
-        <select ng-model="addPriority">
+        Due date: <input type="text" datepicker-popup="dd.MM.yyyy"
+               ng-model="addDueDate" is-open="opened" min-date="minDate" max-date="'2015-06-22'"
+               datepicker-options="dateOptions"
+               ng-required="true" close-text="Close" show-weeks="true"/>
+        <br/>
+
+        <input type="text" ui-date><br/>
             <option value="1">High</option>
             <option value="2" selected="true">Normal</option>
             <option value="3">Low</option>
@@ -42,7 +49,14 @@
         <tr ng-repeat="x in todos | filter:filter_todos | orderBy:predicate:reverse_sort" ng-class="rowClass(person)">
             <td><input type="checkbox" ng-checked="x.completed" ng-click="complete_click(x)"></td>
             <td ng-class="{done: x.completed}">{{ x.text }}</td>
-            <td> {{ x.due_date |  date: 'dd-MM-yyyy'}} </td>
+
+
+            <td> <input type="text" datepicker-popup="dd.MM.yyyy"
+                           ng-model="x.due_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'"
+                           datepicker-options="dateOptions"
+                           ng-required="true" close-text="Close" show-weeks="true"/></td>
+
+
             <td> {{ x.priority }} </td>
             <td class="delete" ng-click="delete_click(x)"> x </td>
         </tr>
