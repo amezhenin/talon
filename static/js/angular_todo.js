@@ -1,4 +1,4 @@
-var app = angular.module("talonApp", []);
+var app = angular.module("talonApp", ['ga']);
 
 
 app.config(['$httpProvider', function($httpProvider) {
@@ -7,7 +7,7 @@ app.config(['$httpProvider', function($httpProvider) {
 }]);
 
 
-app.controller("todoController", function ($scope, $http) {
+app.controller("todoController", function ($scope, $http, ga) {
 
     $scope.init_table = function() {
         $http.get("/api/todo/")
@@ -27,6 +27,7 @@ app.controller("todoController", function ($scope, $http) {
             .success(function(response) {
                 $scope.init_table(); // TODO do something else
             });
+        ga('send', 'event', 'todo', 'deleted', todo.id);
     };
 
 
@@ -38,6 +39,7 @@ app.controller("todoController", function ($scope, $http) {
             .success(function(response) {
                 $scope.init_table(); // TODO do something else
             });
+        ga('send', 'event', 'todo', 'completed', todo.id);
     };
 
     $scope.submit_click = function(todo) {
@@ -50,6 +52,7 @@ app.controller("todoController", function ($scope, $http) {
             .success(function(response) {
                 $scope.init_table(); // TODO do something else
             });
+        ga('send', 'event', 'todo', 'submitted', data.text);
     };
 
     $scope.filter_todos = function(todo) {

@@ -19,6 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.26"
+    "angular": "~1.2.26",
+    "angular-ga": "~0.1.3"
   }
 }
