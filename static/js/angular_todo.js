@@ -19,6 +19,7 @@ app.controller("todoController", function ($scope, $http, ga) {
     $scope.init_form = function() {
         $scope.addText = "trololo";
         $scope.addPriority = 2;
+        $scope.addDueDate = new Date();
     };
 
 
@@ -47,7 +48,7 @@ app.controller("todoController", function ($scope, $http, ga) {
             text: $scope.addText,
             priority: $scope.addPriority,
             due_date: $scope.addDueDate
-        }
+        };
         $http.post("/api/todo/", data)
             .success(function(response) {
                 $scope.init_table(); // TODO do something else
