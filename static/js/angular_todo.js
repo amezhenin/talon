@@ -68,8 +68,11 @@ app.controller("todoController", function ($scope, $http, ga) {
         $event.preventDefault();
         $event.stopPropagation();
 
+        $scope.op = {};
+        $scope.opened = false;
+
         if (id) {
-            $scope.opened = id;
+            $scope.op[id] = true;
         } else {
             $scope.opened = true;
         }

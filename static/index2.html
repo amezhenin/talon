@@ -36,7 +36,7 @@
         Due date: <input type="text"
                          datepicker-popup='dd-MM-yyyy'
                          ng-model="addDueDate"
-                         is-open="opened === true"
+                         is-open="opened"
                          close-text="Close"
                          ng-click="open($event)" /> <br/>
 
@@ -69,10 +69,9 @@
             <td> <input type="text"
                     datepicker-popup='dd-MM-yyyy'
                            ng-model="x.due_date"
-                           is-open="opened === x.id"
+                           is-open="op[x.id]"
                            close-text="Close"
-                           ng-click="open($event, x.id)"
-                           show-button-bar="false"/></td>
+                           ng-click="open($event, x.id)"/></td>
 
 
             <td> {{ x.priority }} </td>
