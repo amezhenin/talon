@@ -1,4 +1,4 @@
-var app = angular.module("talonApp", ['ga']);
+var app = angular.module("talonApp", ['ga', 'ui.bootstrap']);
 
 
 app.config(['$httpProvider', function($httpProvider) {
@@ -13,6 +13,7 @@ app.controller("todoController", function ($scope, $http, ga) {
         $http.get("/api/todo/")
             .success(function(response) {
                 $scope.todos = response;
+                $scope.op = {};
             });
     };
 
@@ -61,6 +62,17 @@ app.controller("todoController", function ($scope, $http, ga) {
             return !todo.completed;
         }
         return true;
+    };
+
+    $scope.open = function($event, id) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        if (id) {
+            $scope.opened = id;
+        } else {
+            $scope.opened = true;
+        }
     };
 
     $scope.init_table();
