@@ -12,7 +12,11 @@ app.controller("todoController", function ($scope, $http, ga) {
     $scope.init_table = function() {
         $http.get("/api/todo/")
             .success(function(response) {
-                $scope.todos = response;
+
+                $scope.todos = _.map(response, function(x){
+                  x.due_date = new Date(x.due_date);
+                  return x;
+                });
                 $scope.op = {};
             });
     };

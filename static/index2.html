@@ -5,9 +5,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css"/>
     <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
+    <script src="/static/bower_components/lodash/lodash.min.js"></script>
     <script src="/static/bower_components/angular/angular.min.js"></script>
     <script src="/static/bower_components/angular-ga/ga.js"></script>
-
     <script src="/static/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="/static/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
@@ -40,6 +40,12 @@
                          close-text="Close"
                          ng-click="open($event)" /> <br/>
 
+        Due date: <input type="date" name="input"
+                         ng-model="addDueDate" />
+        <br/>
+
+
+
         <select ng-model="addPriority">
             <option value="1">High</option>
             <option value="2" selected="true">Normal</option>
@@ -66,12 +72,18 @@
             <td ng-class="{done: x.completed}">{{ x.text }}</td>
 
 
-            <td> <input type="text"
-                    datepicker-popup='dd-MM-yyyy'
-                           ng-model="x.due_date"
-                           is-open="op[x.id]"
-                           close-text="Close"
-                           ng-click="open($event, x.id)"/></td>
+            <td>
+                <!--<input type="text"-->
+                    <!--datepicker-popup='dd-MM-yyyy'-->
+                           <!--ng-model="x.due_date"-->
+                           <!--is-open="op[x.id]"-->
+                           <!--close-text="Close"-->
+                           <!--ng-click="open($event, x.id)"/>-->
+
+                <input type="date" name="input"
+                            ng-model="x.due_date" />
+
+            </td>
 
 
             <td> {{ x.priority }} </td>
